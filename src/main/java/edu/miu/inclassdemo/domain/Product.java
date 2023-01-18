@@ -1,5 +1,11 @@
 package edu.miu.inclassdemo.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +16,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private float price;
@@ -19,6 +28,9 @@ public class Product {
     private int starCount;
     private boolean deleted;
     private LocalDateTime createdAt;
+
+    @OneToMany
+    @JoinColumn(name = "product_id")
     // ....
     private List<Review> reviews;
     public Product(int id, String name, float price, List<Review> reviews) {

@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(int id) {
-        return productRepo.findById(id);
+        return productRepo.findById(id).orElse(null);
     }
 
     @Override
@@ -42,16 +42,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void updateById(int id, Product p) {
-        productRepo.updateById(id, p);
+       // productRepo.updateById(id, p);
     }
 
     @Override
     public List<Product> findAllPriceGreaterThan(int price) {
-        return productRepo.findAllPriceGreaterThan(price);
+        return productRepo.findAllByPriceGreaterThan(price);
     }
 
     @Override
     public Review getReviewByProductId(int pId, int reviewId) {
-        return productRepo.getReviewByProductId(pId, reviewId);
+        return null;
+      //  return productRepo.getReviewByProductId(pId, reviewId);
     }
 }

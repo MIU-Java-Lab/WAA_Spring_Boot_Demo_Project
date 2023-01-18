@@ -1,23 +1,13 @@
 package edu.miu.inclassdemo.repo;
 
 import edu.miu.inclassdemo.domain.Product;
-import edu.miu.inclassdemo.domain.Review;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface ProductRepo {
+public interface ProductRepo extends CrudRepository<Product, Integer> {
+
     List<Product> findAll();
-
-    Product findById(int id);
-
-    void save(Product p);
-
-    void deleteById(int id);
-
-    void updateById(int id, Product p);
-
-    List<Product> findAllPriceGreaterThan(int price);
-
-    Review getReviewByProductId(int pId, int reviewId);
+    List<Product> findAllByPriceGreaterThan(int price);
 }
 
